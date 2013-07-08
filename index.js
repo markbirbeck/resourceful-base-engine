@@ -240,7 +240,6 @@ BaseEngine.prototype.save = function(id, doc, callback) {
  */
 
 BaseEngine.prototype.update = function(id, doc, callback) {
-  console.log('In proper update function');
   var self = this;
 
   /**
