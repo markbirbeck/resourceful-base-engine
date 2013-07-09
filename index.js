@@ -43,10 +43,16 @@ var BaseEngine = exports.BaseEngine = function BaseEngine(config) {
   this.childNode = config.childNode;
 
   /**
-   * If there's a content type then store that too:
+   * If there's a content type then store it:
    */
 
   this.contentType = config.contentType || 'application/json';
+
+  /**
+   * If there's a patch URL suffix then store that too:
+   */
+
+  this.patchSuffix = config.patchSuffix || '';
 
   /**
    * Store the base URI with a trailing slash including the prefix if any:
