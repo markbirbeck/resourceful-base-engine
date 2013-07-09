@@ -2,8 +2,6 @@
 
 var should = require('should');
 
-var _ = require('underscore');
-
 /**
  * Add the BaseEngine engine to resourceful:
  */
