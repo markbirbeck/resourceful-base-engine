@@ -28,6 +28,15 @@ var BaseEngine = exports.BaseEngine = function BaseEngine(config) {
   this.resourceful = resourceful;
 
   /**
+   * [TODO] Work out how this should be used. For now it helps implement
+   * patch:
+   */
+
+  this.supports = {
+    patch: true
+  };
+
+  /**
    * Specify the part of the object to return or null for the root:
    */
 
@@ -123,6 +132,12 @@ BaseEngine.prototype.request = function(method, id, doc, callback) {
     body = { status: 404 };
     break;
 
+  case 'patch':
+    url = this.uri + id;
+    err = new Error('No patch method.');
+    body = { status: 500 };
+    break;
+
   case 'post':
     url = this.uri + this.resourceful.pluralize(doc.resource.toLowerCase());
     err = new Error('No post method.');
@@ -173,7 +188,22 @@ BaseEngine.prototype.head = function(id, callback) {
 
 
 /**
- * Overwrite an existing resource:
+ * Overwrite parts of an existing resource:
+ */
+
+BaseEngine.prototype.patch = function (id, doc, callback){
+  return this.request('patch', id, doc, function (err, res){
+    if (err) {
+      callback(err);
+    } else {
+      callback(null, _.extend({ 'status': 200 }, res));
+    }
+  });
+};
+
+
+/**
+ * Overwrite or create a new resource:
  */
 
 BaseEngine.prototype.put = function (id, doc, callback){
@@ -240,31 +270,56 @@ BaseEngine.prototype.save = function(id, doc, callback) {
  */
 
 BaseEngine.prototype.update = function(id, doc, callback) {
-  console.log('In proper update function');
   var self = this;
 
   /**
-   * If the resource exists it's modified, otherwise a new
-   * one is created:
+   * If we can do a patch then do so...
    */
 
-  self.get(id, function(err, res){
-
-    if (err){
-      callback(err);
-    } else {
-      if (res.status === 404){
-        res = {status: 200};
-      }
-      if (res.status === 200){
-        delete res.status;
-
-        self.put(id, _.extend(res, doc), callback);
+  if (self.supports.patch){
+    self.patch(id, doc, function (err, res){
+      if (err){
+        callback(err);
       } else {
-        callback(err, res);
+        if (res.status === 200){
+          delete res.status;
+
+          callback(null, res);
+        } else {
+          callback(new Error('Failed to update ' + id));
+        }
       }
-    }
-  });
+    });
+  }
+
+  /**
+   * ...otherwise get the existing record and update it:
+   */
+
+  else {
+    self.get(id, function(err, res){
+      if (err){
+        callback(err);
+      } else {
+
+        /**
+         * If the resource exists it's modified, otherwise a new
+         * one is created:
+         */
+
+        if (res.status === 404){
+          res = {status: 200};
+        }
+        if (res.status === 200){
+          delete res.status;
+
+          self.put(id, _.extend(res, doc), callback);
+        } else {
+          callback(err, res);
+        }
+      }
+    });
+  }
 };
 
 

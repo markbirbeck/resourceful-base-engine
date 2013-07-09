@@ -44,6 +44,15 @@ describe('No Methods', function(){
     });
   });
 
+  it('should be no patch method', function(done){
+    BaseEngine.update(id, {}, function(err, company){
+      should.exist(err);
+      err.should.have.property('message', 'No patch method.');
+      should.not.exist(company);
+      done();
+    });
+  });
+
   it('should be no put method', function(done){
     BaseEngine.create({}, function(err, company){
       should.exist(err);
