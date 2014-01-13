@@ -37,7 +37,7 @@ With this core logic in place a new engine would only need to provide the `get` 
 
 ## License
 
-Copyright 2013 Mark Birbeck
+Copyright 2013-4 Mark Birbeck
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
 
