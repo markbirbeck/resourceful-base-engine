@@ -26,5 +26,5 @@
   },
   "scripts": {
     "test": "NODE_ENV=test mocha"
-  },
+  }
 }
