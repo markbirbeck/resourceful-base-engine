@@ -13,7 +13,6 @@
     "test": "mocha"
   },
   "name": "resourceful-base-engine",
-  "author": "Mark Birbeck",
   "readmeFilename": "README.md",
   "repository": {
     "type": "git",
