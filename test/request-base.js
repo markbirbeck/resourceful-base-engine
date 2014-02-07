@@ -8,7 +8,7 @@ var should = require('should');
 
 var resourceful = require('resourceful');
 
-require('..').init(resourceful);
+require('../lib/resourceful-base-engine').init(resourceful);
 
 describe('No Methods', function(){
   var BaseEngine
