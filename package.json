@@ -27,10 +27,4 @@
   "scripts": {
     "test": "NODE_ENV=test mocha"
   },
-  "name": "resourceful-base-engine",
-  "readmeFilename": "README.md",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/markbirbeck/resourceful-base-engine.git"
-  }
 }
