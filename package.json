@@ -3,7 +3,7 @@
   "version": "0.1.3",
   "main": "./lib/resourceful-base-engine",
   "dependencies": {
-    "underscore": "~1.5.1"
+    "lodash": "~2.4.1"
   },
   "devDependencies": {
     "mocha": "~1.12.0",
