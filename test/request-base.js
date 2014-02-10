@@ -35,6 +35,15 @@ describe('No Methods', function(){
     });
   });
 
+  it('should be no find method', function(done){
+    BaseEngine.find({id: '06675651'}, function(err, company){
+      should.exist(err);
+      err.should.have.property('message', 'No find method.');
+      should.not.exist(company);
+      done();
+    });
+  });
+
   it('should be no get method', function(done){
     BaseEngine.get(id, function(err, company){
       should.exist(err);
