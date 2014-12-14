@@ -4,9 +4,9 @@ A base class for [Resourceful](https://npmjs.org/package/resourceful) engines.
 
 ## Engines Using This Module
 
-[resourceful-rest](https://npmjs.org/package/resourceful-rest)
-[resourceful-s3](https://npmjs.org/package/resourceful-s3)
-[resourceful-simpledb](https://npmjs.org/package/resourceful-simpledb)
+* [resourceful-rest](https://npmjs.org/package/resourceful-rest)
+* [resourceful-s3](https://npmjs.org/package/resourceful-s3)
+* [resourceful-simpledb](https://npmjs.org/package/resourceful-simpledb)
 
 ## Motivation
 
