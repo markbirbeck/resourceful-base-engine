@@ -2,6 +2,8 @@
 
 A base class for [Resourceful](https://npmjs.org/package/resourceful) engines.
 
+[![wercker status](https://app.wercker.com/status/b05e475c7e358d1e3c7e5b3395aa683e/m/master "wercker status")](https://app.wercker.com/project/bykey/b05e475c7e358d1e3c7e5b3395aa683e)
+
 ## Engines Using This Module
 
 * [resourceful-rest](https://npmjs.org/package/resourceful-rest)
