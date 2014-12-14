@@ -20,14 +20,14 @@ BaseEngine.prototype.update = function(id, doc, callback) {
     if (err){
       callback(err);
     } else {
-      if (res.status === 404){
+      if (!res || res.status === 404){
         res = {};
-      } else if (res.status !== 200){
-        callback(err, res);
-      }
-      delete res.status;
+      } else if (res.status && res.status !== 200){
+        delete res.status;
 
-      self.put(id, _.extend(res, doc), callback);
+        self.put(id, _.extend(res, doc), callback);
+      }
+        callback(err, res);
     }
   });
 };
