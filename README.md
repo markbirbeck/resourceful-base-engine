@@ -2,6 +2,14 @@
 
 A base class for [Resourceful](https://npmjs.org/package/resourceful) engines.
 
+## Engines Using This Module
+
+[resourceful-rest](https://npmjs.org/package/resourceful-rest)
+[resourceful-s3](https://npmjs.org/package/resourceful-s3)
+[resourceful-simpledb](https://npmjs.org/package/resourceful-simpledb)
+
+## Motivation
+
 The idea is to keep factoring as much as possible into the base so that actual engines are very lightweight.
 
 For example, the update method checks to see whether a resource exists, and if it does, the fields to be added get merged with the existing record which then gets overwritten. And of course if the record doesn't exist then a new entry is created. Since this logic would apply to pretty much any engine we want to factor it into the base engine:
